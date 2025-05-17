@@ -1,0 +1,71 @@
+stages:
+  - install
+  - lint
+  - build
+
+variables:
+  NPM_CONFIG_LOGLEVEL: warn
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
+
+# 1) On installe une fois pour toutes
+install:
+  stage: install
+  image: node:18
+  script:
+    - rm -rf node_modules .npm
+    - npm ci
+  # On met en cache pour les prochaines étapes
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .npm
+      - node_modules/
+    policy: pull-push
+  # On partage les node_modules comme artefact
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1h
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+
+# 2) On réutilise les node_modules installés plus haut
+lint:
+  stage: lint
+  image: node:18
+  needs:
+    - job: install
+      artifacts: true
+  script:
+    - npm run lint
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .npm
+      - node_modules/
+    policy: pull
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+
+# 3) Même chose pour le build
+build:
+  stage: build
+  image: node:18
+  needs:
+    - job: install
+      artifacts: true
+  script:
+    - rm -rf .next
+    - npm run build
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .npm
+      - node_modules/
+    policy: pull
+  artifacts:
+    paths:
+      - .next/
+    expire_in: 1h
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
