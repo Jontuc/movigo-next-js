@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deadcode": "knip --config knip.config.json"
   },
   "dependencies": {
     "next": "15.3.2",
@@ -29,6 +30,7 @@
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "knip": "^5.56.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   }
