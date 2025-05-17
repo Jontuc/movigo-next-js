@@ -1,0 +1,14 @@
+{
+  "ignore": [
+    "src/app/**/*.{layout,page}.tsx",
+    "src/app/**/*/{not-found,404}.tsx",
+    "next.config.ts",
+    "@typescript-eslint/parser",
+    "eslint-config-next"
+  ],
+  "rules": {
+    "dependencies": "off",
+    "unlisted": "off",
+    "binaries": "off"
+  }
+}
