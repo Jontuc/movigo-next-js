@@ -2,18 +2,19 @@
 Este documento resume las principales reglas de ESLint y la configuración de Prettier usadas en tu proyecto Next.js/TypeScript.
 
 ESLint
+
 1. Ignorados (ignores)
-// No se analizan estos directorios
-ignores: [
-'node_modules/',
-'.next/',
-'out/',
-'public/',
-'coverage/',
-],
+   // No se analizan estos directorios
+   ignores: [
+   'node_modules/',
+   '.next/',
+   'out/',
+   'public/',
+   'coverage/',
+   ],
 
 2. Plugins activos
-react / react-hooks: validación de buenas prácticas en componentes React y hooks.
+   react / react-hooks: validación de buenas prácticas en componentes React y hooks.
 
 import: orden de imports y detección de dependencias ausentes/extraviadas.
 
@@ -22,10 +23,10 @@ jest: refuerza estándares en pruebas (no tests deshabilitados, expect válidos�
 prettier: detecta y corrige conflictos entre ESLint y Prettier.
 
 3. Reglas destacadas
-React
-// No es necesario importar React en Next.js
-'react/react-in-jsx-scope': 'off'
-'react/jsx-uses-react': 'off'
+   React
+   // No es necesario importar React en Next.js
+   'react/react-in-jsx-scope': 'off'
+   'react/jsx-uses-react': 'off'
 
 // Hooks
 'react-hooks/rules-of-hooks': 'error' // uso correcto de hooks

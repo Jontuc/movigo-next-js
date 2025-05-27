@@ -11,13 +11,7 @@ import prettierPlugin from 'eslint-plugin-prettier';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const ignores = [
-  'node_modules/',
-  '.next/',
-  'out/',
-  'public/',
-  'coverage/',
-];
+const ignores = ['node_modules/', '.next/', 'out/', 'public/', 'coverage/'];
 
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
@@ -57,14 +51,7 @@ const eslintConfig = [
       'import/order': [
         'warn',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-          ],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
           'newlines-between': 'always',
         },
       ],
@@ -80,10 +67,7 @@ const eslintConfig = [
       'jest/valid-expect': 'error',
 
       // TS
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_' },
-      ],
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 
       // Prettier
       'prettier/prettier': ['error', {}, { usePrettierrc: true }],
